@@ -1,0 +1,15 @@
+{
+    "name" : "jordanbeattie/mail-testing",
+    "autoload" : {
+        "psr-4" : {
+            "Jordanbeattie\\MailTesting\\" : "src"
+        }
+    },
+    "extra" : {
+        "laravel" : {
+            "providers" : [
+                "Jordanbeattie\\MailTesting\\MailTestingServiceProvider"
+            ]
+        }
+    }
+}
