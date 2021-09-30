@@ -11,5 +11,8 @@
                 "Jordanbeattie\\MailTesting\\MailTestingServiceProvider"
             ]
         }
+    },
+    "require" : {
+        "laravel/framework" : "*"
     }
 }
