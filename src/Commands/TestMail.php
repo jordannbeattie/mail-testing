@@ -26,13 +26,35 @@ class TestMail extends Command
         }
         else
         {
-            try{
-                Mail::to($this->argument('email'))->send(new TestEmail());
-                $this->comment('Email sent successfully to ' . $this->argument('email'));
-            }
-            catch (\Exception $e)
+            if(!getenv('MAIL_MAILER'))
             {
-                $this->comment($e->getMessage());
+                $this->comment('MAIL_MAILER has not been set in your .env file');
+            }
+            elseif(!getenv('MAIL_HOST'))
+            {
+                $this->comment('MAIL_HOST has not been set in your .env file');
+            }
+            elseif(!getenv('MAIL_PORT'))
+            {
+                $this->comment('MAIL_PORT has not been set in your .env file');
+            }
+            elseif(!getenv('MAIL_FROM_ADDRESS'))
+            {
+                $this->comment('MAIL_FROM_ADDRESS has not been set in your .env file');
+            }
+            elseif(!getenv('MAIL_FROM_NAME'))
+            {
+                $this->comment('MAIL_FROM_NAME has not been set in your .env file');
+            }
+            else{
+                try{
+                    Mail::to($this->argument('email'))->send(new TestEmail());
+                    $this->comment('Email sent successfully to ' . $this->argument('email'));
+                }
+                catch (\Exception $e)
+                {
+                    $this->comment($e->getMessage());
+                }
             }
         }
     }
